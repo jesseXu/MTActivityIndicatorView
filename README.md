@@ -7,6 +7,10 @@ This is a metro style activity indicator view.
 
 Usage
 -----
+Add QuartzCore.framework to you project.
+
+public method:
+
 	- (void)startAnimating;	
 	- (void)stopAnimating;
 	- (void)stopAnimatingNeedDelay:(NSTimeInterval)time;
