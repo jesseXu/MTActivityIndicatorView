@@ -3,7 +3,7 @@
 //  MTActivityIndicatorView
 //
 //  Created by jesse on 12-7-19.
-//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012年 Jesse Xu. All rights reserved.
 //
 
 #import "AppDelegate.h"

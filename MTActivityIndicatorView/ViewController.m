@@ -3,10 +3,11 @@
 //  MTActivityIndicatorView
 //
 //  Created by jesse on 12-7-19.
-//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
+//  Copyright (c) 2012年 Jesse Xu. All rights reserved.
 //
 
 #import "ViewController.h"
+#import "MTActivityIndicatorView.h"
 
 @interface ViewController ()
 
@@ -17,13 +18,20 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    self.view.backgroundColor = [UIColor blackColor];
+    
+    
+    MTActivityIndicatorView *aiv = [[MTActivityIndicatorView alloc] initWithFrame:CGRectMake(0.0f, 10.0f, 320.0f, 10.0f)];
+    [self.view addSubview:aiv];
+    [aiv release];
+    
+    [aiv startAnimating];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

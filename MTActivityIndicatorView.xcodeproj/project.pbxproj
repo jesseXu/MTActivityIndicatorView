@@ -15,6 +15,8 @@
 		8871DC3F15B7A748003B90E0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8871DC3E15B7A748003B90E0 /* AppDelegate.m */; };
 		8871DC4215B7A748003B90E0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8871DC4115B7A748003B90E0 /* ViewController.m */; };
 		8871DC4515B7A748003B90E0 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8871DC4315B7A748003B90E0 /* ViewController.xib */; };
+		8871DC4D15B7A76D003B90E0 /* MTActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8871DC4C15B7A76D003B90E0 /* MTActivityIndicatorView.m */; };
+		8871DC5315B7A9B9003B90E0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8871DC5215B7A9B8003B90E0 /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,15 +24,18 @@
 		8871DC2E15B7A748003B90E0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		8871DC3015B7A748003B90E0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		8871DC3215B7A748003B90E0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		8871DC3615B7A748003B90E0 /* MTActivityIndicatorView-Info.plist */ = {isa = PBXFileReference; path = "MTActivityIndicatorView-Info.plist"; sourceTree = "<group>"; };
+		8871DC3615B7A748003B90E0 /* MTActivityIndicatorView-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MTActivityIndicatorView-Info.plist"; sourceTree = "<group>"; };
 		8871DC3815B7A748003B90E0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8871DC3A15B7A748003B90E0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		8871DC3C15B7A748003B90E0 /* MTActivityIndicatorView-Prefix.pch */ = {isa = PBXFileReference; path = "MTActivityIndicatorView-Prefix.pch"; sourceTree = "<group>"; };
-		8871DC3D15B7A748003B90E0 /* AppDelegate.h */ = {isa = PBXFileReference; path = AppDelegate.h; sourceTree = "<group>"; };
+		8871DC3C15B7A748003B90E0 /* MTActivityIndicatorView-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MTActivityIndicatorView-Prefix.pch"; sourceTree = "<group>"; };
+		8871DC3D15B7A748003B90E0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8871DC3E15B7A748003B90E0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		8871DC4015B7A748003B90E0 /* ViewController.h */ = {isa = PBXFileReference; path = ViewController.h; sourceTree = "<group>"; };
+		8871DC4015B7A748003B90E0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		8871DC4115B7A748003B90E0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		8871DC4415B7A748003B90E0 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController.xib; sourceTree = "<group>"; };
+		8871DC4B15B7A76D003B90E0 /* MTActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTActivityIndicatorView.h; sourceTree = "<group>"; };
+		8871DC4C15B7A76D003B90E0 /* MTActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTActivityIndicatorView.m; sourceTree = "<group>"; };
+		8871DC5215B7A9B8003B90E0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8871DC5315B7A9B9003B90E0 /* QuartzCore.framework in Frameworks */,
 				8871DC2F15B7A748003B90E0 /* UIKit.framework in Frameworks */,
 				8871DC3115B7A748003B90E0 /* Foundation.framework in Frameworks */,
 				8871DC3315B7A748003B90E0 /* CoreGraphics.framework in Frameworks */,
@@ -67,6 +73,7 @@
 		8871DC2D15B7A748003B90E0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8871DC5215B7A9B8003B90E0 /* QuartzCore.framework */,
 				8871DC2E15B7A748003B90E0 /* UIKit.framework */,
 				8871DC3015B7A748003B90E0 /* Foundation.framework */,
 				8871DC3215B7A748003B90E0 /* CoreGraphics.framework */,
@@ -79,6 +86,8 @@
 			children = (
 				8871DC3D15B7A748003B90E0 /* AppDelegate.h */,
 				8871DC3E15B7A748003B90E0 /* AppDelegate.m */,
+				8871DC4B15B7A76D003B90E0 /* MTActivityIndicatorView.h */,
+				8871DC4C15B7A76D003B90E0 /* MTActivityIndicatorView.m */,
 				8871DC4015B7A748003B90E0 /* ViewController.h */,
 				8871DC4115B7A748003B90E0 /* ViewController.m */,
 				8871DC4315B7A748003B90E0 /* ViewController.xib */,
@@ -163,6 +172,7 @@
 				8871DC3B15B7A748003B90E0 /* main.m in Sources */,
 				8871DC3F15B7A748003B90E0 /* AppDelegate.m in Sources */,
 				8871DC4215B7A748003B90E0 /* ViewController.m in Sources */,
+				8871DC4D15B7A76D003B90E0 /* MTActivityIndicatorView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,6 +282,7 @@
 				8871DC4A15B7A748003B90E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
