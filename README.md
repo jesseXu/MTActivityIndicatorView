@@ -7,7 +7,7 @@ This is a metro style activity indicator view.
 
 Usage
 -----
-Add QuartzCore.framework to you project.
+Add QuartzCore.framework to your project.
 
 public method:
 
