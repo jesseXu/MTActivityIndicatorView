@@ -14,6 +14,15 @@
 
 @property (nonatomic, retain) UIColor *dotColor;
 
+@property (nonatomic, assign) CGFloat animationDuration;
+@property (nonatomic, assign) CGFloat ratioOfMaxAndMinVelocity;
+@property (nonatomic, assign) CGFloat accelerateDistance;
+@property (nonatomic, assign) CGFloat decelerateDistance;
+@property (nonatomic, assign) CGFloat interval;
+@property (nonatomic, assign) NSInteger dotCount;
+@property (nonatomic, assign) BOOL repeated;
+
+
 - (void)startAnimating;
 - (void)stopAnimating;
 - (void)stopAnimatingNeedDelay:(NSTimeInterval)time;

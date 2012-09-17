@@ -14,9 +14,18 @@
 @interface MTActivityIndicatorView ()
 {
     BOOL _isAnimating;
+    
+    //for calculate key frame value
+    CGFloat _v0;
+    CGFloat _v1;
+    CGFloat _t0;
+    CGFloat _t1;
+    CGFloat _t2;
+    CGFloat _a0;
+    CGFloat _a1;
 }
 
-@property (nonatomic, retain) NSArray *values;
+@property (nonatomic, retain) NSArray *keyframeValues;
 
 @end
 
@@ -24,12 +33,20 @@
 @implementation MTActivityIndicatorView
 
 @synthesize dotColor = _dotColor;
-@synthesize values = _values;
+@synthesize keyframeValues = _keyframeValues;
+
+@synthesize animationDuration = _animationDuration;
+@synthesize ratioOfMaxAndMinVelocity = _ratioOfMaxAndMinVelocity;
+@synthesize accelerateDistance = _accelerateDistance;
+@synthesize decelerateDistance = _decelerateDistance;
+@synthesize interval = _interval;
+@synthesize dotCount = _dotCount;
+@synthesize repeated = _repeated;
 
 - (void)dealloc
 {
     [_dotColor release];
-    [_values release];
+    [_keyframeValues release];
     
     [super dealloc];
 }
@@ -40,11 +57,17 @@
     if (self) {
 
         //set default color
-        self.dotColor           = [UIColor redColor];
-        self.backgroundColor    = [UIColor clearColor];
+        self.backgroundColor            = [UIColor clearColor];
+        self.dotColor                   = [UIColor redColor];
+        self.dotCount                   = 5;
+        self.ratioOfMaxAndMinVelocity   = 10;
+        self.accelerateDistance         = 3./8;
+        self.decelerateDistance         = 3./8;
+        self.interval                   = 1.0f;
+        self.repeated                   = YES;
         
         //cal key frame value
-        self.values             = [self values];
+//        self.values             = [self values];
     }
     return self;
 }
@@ -56,6 +79,10 @@
 {
     if (_isAnimating)
         return;
+    
+    
+    
+    self.keyframeValues = [self values];
     
     [self initLayers];
     
@@ -75,7 +102,7 @@
         CALayer *layer = [self.layer.sublayers objectAtIndex:i];
         
         CAKeyframeAnimation *dotMoveKA = [CAKeyframeAnimation animationWithKeyPath:@"position.x"];
-        [dotMoveKA setValues:self.values];
+        [dotMoveKA setValues:self.keyframeValues];
         [dotMoveKA setDuration:8.0f];
 //        [dotMoveKA setRepeatCount:INFINITY];
         [dotMoveKA setSpeed:2];
@@ -140,12 +167,14 @@
 - (NSArray *)values
 {
     NSMutableArray *array = [NSMutableArray array];
-    for (int i = 0; i < 81; i++)
+
+    //---
+    [self evalBasic];
+    
+    NSInteger length = self.animationDuration / 0.1 + 1;
+    for (int i = 0; i < length; i++)
     {
         CGFloat value = [self eval:i*0.1];
-        
-//        NSLog(@"time:%f s:%f", i * 0.1, value);
-        
         [array addObject:[NSNumber numberWithFloat:value]];
     }
     
@@ -159,9 +188,12 @@
 {
     if (_isAnimating)
     {
-        [self performSelector:@selector(startAnimatingTransaction) withObject:nil afterDelay:1.0f];
+        [self performSelector:@selector(startAnimatingTransaction) withObject:nil afterDelay:self.interval];
     }
 }
+
+
+/*
 
 //start speed, can be modified
 #define v0 200.0f
@@ -194,6 +226,40 @@
     }
 }
 
+*/
 
+- (CGFloat)eval:(CGFloat)time
+{
+    if (time < _t0)
+    {
+        return _v0 * time + 0.5 * _a0 * time * time;
+    }
+    else if (time < _t1)
+    {
+//        return _v0 * time +
+    }
+}
+
+
+- (void)evalBasic
+{
+    
+    //V1 = (2Ka*S + 2Kd*S + (1 - Ka - Kd)*S*(K + 1))/((K + 1)*Tt)
+    
+    CGFloat s = self.frame.size.width;
+    CGFloat k = self.ratioOfMaxAndMinVelocity;
+    CGFloat t = self.animationDuration;
+    CGFloat ka = self.accelerateDistance;
+    CGFloat kd = self.accelerateDistance;
+    
+    _v1 = (2*ka*s + 2*kd*s + (1 - ka - kd)*(k + 1))/((k + 1)*t);
+    _v0 = k * _v1;
+    _t0 = 2 * ka * s / ((k + 1) * _v1);
+    _t1 = _t0 + (1 - ka - kd) * s / _v1;
+    _t2 = _t1 + 2 * kd * s / ((k + 1) * _v1);
+    _a0 = (1 - k) * _v1 / _t0;
+    _a1 = (k - 1) * _v1 / (_t2 - _t1);
+    
+}
 
 @end
