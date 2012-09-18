@@ -13,4 +13,7 @@ public method:
 
 	- (void)startAnimating;	
 	- (void)stopAnimating;
-	- (void)stopAnimatingNeedDelay:(NSTimeInterval)time;
+	- (void)stopAnimatingNeedDelay:(NSTimeInterval)time;	
+LICENSE
+-----
+Under the BSD License.
