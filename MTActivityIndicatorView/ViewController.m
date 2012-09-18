@@ -23,6 +23,7 @@
     
     
     MTActivityIndicatorView *aiv = [[MTActivityIndicatorView alloc] initWithFrame:CGRectMake(0.0f, 10.0f, 320.0f, 10.0f)];
+    aiv.animationDuration = 4.0f;
     aiv.dotColor = [UIColor whiteColor];
     [self.view addSubview:aiv];
     [aiv release];

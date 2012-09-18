@@ -39,7 +39,8 @@
 @synthesize ratioOfMaxAndMinVelocity = _ratioOfMaxAndMinVelocity;
 @synthesize accelerateDistance = _accelerateDistance;
 @synthesize decelerateDistance = _decelerateDistance;
-@synthesize interval = _interval;
+@synthesize repeatInterval = _repeatInterval;
+@synthesize dotInterval = _dotInterval;
 @synthesize dotCount = _dotCount;
 @synthesize repeated = _repeated;
 
@@ -63,11 +64,11 @@
         self.ratioOfMaxAndMinVelocity   = 10;
         self.accelerateDistance         = 3./8;
         self.decelerateDistance         = 3./8;
-        self.interval                   = 1.0f;
+        self.repeatInterval             = 1.0f;
+        self.dotInterval                = 0.3f;
+        self.animationDuration          = 4.0f;
         self.repeated                   = YES;
         
-        //cal key frame value
-//        self.values             = [self values];
     }
     return self;
 }
@@ -80,8 +81,7 @@
     if (_isAnimating)
         return;
     
-    
-    
+ 
     self.keyframeValues = [self values];
     
     [self initLayers];
@@ -103,11 +103,8 @@
         
         CAKeyframeAnimation *dotMoveKA = [CAKeyframeAnimation animationWithKeyPath:@"position.x"];
         [dotMoveKA setValues:self.keyframeValues];
-        [dotMoveKA setDuration:8.0f];
-//        [dotMoveKA setRepeatCount:INFINITY];
-        [dotMoveKA setSpeed:2];
-//        [dotMoveKA setTimeOffset:0.5 * i];
-        [dotMoveKA setBeginTime:currentTime + i * 0.3];
+        [dotMoveKA setDuration:self.animationDuration];
+        [dotMoveKA setBeginTime:currentTime + i * self.dotInterval];
         
         if (layer == [self.layer.sublayers lastObject])
         {
@@ -166,11 +163,9 @@
 
 - (NSArray *)values
 {
-    NSMutableArray *array = [NSMutableArray array];
-
-    //---
     [self evalBasic];
     
+    NSMutableArray *array = [NSMutableArray array];
     NSInteger length = self.animationDuration / 0.1 + 1;
     for (int i = 0; i < length; i++)
     {
@@ -188,7 +183,7 @@
 {
     if (_isAnimating)
     {
-        [self performSelector:@selector(startAnimatingTransaction) withObject:nil afterDelay:self.interval];
+        [self performSelector:@selector(startAnimatingTransaction) withObject:nil afterDelay:self.repeatInterval];
     }
 }
 
@@ -236,7 +231,15 @@
     }
     else if (time < _t1)
     {
-//        return _v0 * time +
+        return _v0 * _t0 + 0.5 * _a0 * _t0 * _t0 + _v1 * (time - _t0);
+    }
+    else if (time < _t2)
+    {
+        return _v0 * _t0 + 0.5 * _a0 * _t0 * _t0 + _v1 * (_t1 - _t0) + _v1 * (time - _t1) + 0.5 * _a1 * (time - _t1) * (time - _t1);
+    }
+    else
+    {
+        return self.frame.size.width + 2;
     }
 }
 
@@ -252,14 +255,13 @@
     CGFloat ka = self.accelerateDistance;
     CGFloat kd = self.accelerateDistance;
     
-    _v1 = (2*ka*s + 2*kd*s + (1 - ka - kd)*(k + 1))/((k + 1)*t);
+    _v1 = (2*ka*s + 2*kd*s + (1 - ka - kd)*s*(k + 1))/((k + 1)*t);
     _v0 = k * _v1;
     _t0 = 2 * ka * s / ((k + 1) * _v1);
     _t1 = _t0 + (1 - ka - kd) * s / _v1;
     _t2 = _t1 + 2 * kd * s / ((k + 1) * _v1);
     _a0 = (1 - k) * _v1 / _t0;
     _a1 = (k - 1) * _v1 / (_t2 - _t1);
-    
 }
 
 @end
